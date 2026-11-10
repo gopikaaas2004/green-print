@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenprint — Know Your Carbon Footprint</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg gp-nav">
+    <div class="container">
+      <a class="navbar-brand serif fs-3" href="#">🌱 greenprint</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav4"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="nav4">
+        <ul class="navbar-nav ms-auto gap-lg-3 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#calc">Calculator</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pledge">Pledges</a></li>
+          <li class="nav-item"><a class="nav-link" href="#learn">Learn</a></li>
+          <li class="nav-item"><a class="btn btn-forest rounded-pill px-4" href="#calc">Start now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <div class="row align-items-center g-4 g-lg-5">
+        <div class="col-lg-7">
+          <span class="chip"><i class="bi bi-globe-asia-australia"></i> Climate action starts at home</span>
+          <h1 class="serif display-3 mt-3">Small habits.<br><em>Big footprint.</em></h1>
+          <p class="lead my-4">Find out how much carbon your lifestyle creates in under two minutes — then get simple, personal steps to shrink it.</p>
+          <a href="#calc" class="btn btn-forest btn-lg rounded-pill px-5">Calculate my footprint</a>
+        </div>
+        <div class="col-lg-5">
+          <div class="leaf-stack">
+            <div class="leaf-card l1"><i class="bi bi-bicycle"></i> Cycle to work <b>−0.5 t</b></div>
+            <div class="leaf-card l2"><i class="bi bi-sun"></i> Rooftop solar <b>−1.2 t</b></div>
+            <div class="leaf-card l3"><i class="bi bi-basket"></i> Eat more plants <b>−0.6 t</b></div>
+          </div>
+          <p class="small text-muted text-center mt-2">Example savings per year (illustrative)</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Calculator -->
+  <section id="calc" class="py-5">
+    <div class="container">
+      <h2 class="serif text-center mb-2">Your carbon calculator</h2>
+      <p class="text-center text-muted mb-5">Move the sliders — results update live.</p>
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="panel">
+            <h5 class="panel-title"><i class="bi bi-car-front"></i> Travel</h5>
+            <div class="slider-row"><label>Car / bike km per week</label><output id="carOut">100</output></div>
+            <input type="range" class="form-range" id="car" min="0" max="800" step="10" value="100">
+            <div class="slider-row"><label>Bus / metro / train km per week</label><output id="busOut">50</output></div>
+            <input type="range" class="form-range" id="bus" min="0" max="500" step="10" value="50">
+            <div class="slider-row"><label>Short flights per year</label><output id="shortOut">2</output></div>
+            <input type="range" class="form-range" id="short" min="0" max="20" value="2">
+            <div class="slider-row"><label>Long-haul flights per year</label><output id="longOut">0</output></div>
+            <input type="range" class="form-range" id="long" min="0" max="10" value="0">
+
+            <h5 class="panel-title mt-4"><i class="bi bi-house"></i> Home</h5>
+            <div class="slider-row"><label>Electricity units (kWh) per month</label><output id="elecOut">150</output></div>
+            <input type="range" class="form-range" id="elec" min="0" max="1000" step="10" value="150">
+            <div class="slider-row"><label>LPG cylinders per year</label><output id="lpgOut">6</output></div>
+            <input type="range" class="form-range" id="lpg" min="0" max="24" value="6">
+
+            <h5 class="panel-title mt-4"><i class="bi bi-egg-fried"></i> Food</h5>
+            <div class="option-group" data-name="diet">
+              <button class="opt" data-val="1.0">🥦 Vegan</button>
+              <button class="opt active" data-val="1.4">🧀 Vegetarian</button>
+              <button class="opt" data-val="2.0">🍗 Mixed</button>
+              <button class="opt" data-val="3.0">🥩 Meat lover</button>
+            </div>
+
+            <h5 class="panel-title mt-4"><i class="bi bi-bag"></i> Shopping</h5>
+            <div class="option-group" data-name="shop">
+              <button class="opt" data-val="0.3">Minimal</button>
+              <button class="opt active" data-val="0.7">Average</button>
+              <button class="opt" data-val="1.3">Shopaholic</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="panel result sticky-lg-top" style="top:20px">
+            <div class="ring-wrap">
+              <svg viewBox="0 0 200 200" class="ring">
+                <circle cx="100" cy="100" r="85" class="ring-bg"/>
+                <circle cx="100" cy="100" r="85" class="ring-fg" id="ringFg"/>
+              </svg>
+              <div class="ring-text">
+                <span id="total">0.0</span>
+                <small>tonnes CO₂ / year</small>
+              </div>
+            </div>
+            <p class="text-center fw-bold mb-3" id="verdict"></p>
+            <div id="breakdown"></div>
+            <div class="tip mt-3" id="tip"></div>
+            <p class="small text-muted mt-3 mb-0">Rough estimate for awareness only. Many climate goals aim for around 2 tonnes per person per year by 2050.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pledges -->
+  <section id="pledge" class="py-5 pledge-section">
+    <div class="container">
+      <div class="row g-4 g-lg-5 align-items-center">
+        <div class="col-lg-5">
+          <h2 class="serif text-white">Make a pledge</h2>
+          <p class="text-white-50">Tick the changes you'll try this month. Watch your potential savings grow.</p>
+          <div class="saved-box">
+            <small>Potential yearly saving</small>
+            <div class="saved" id="pledgeTotal">0 kg</div>
+            <div class="progress mt-2" style="height:10px">
+              <div class="progress-bar bg-lime" id="pledgeBar" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="row g-3" id="pledgeList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learn -->
+  <section id="learn" class="py-5">
+    <div class="container">
+      <h2 class="serif text-center mb-5">Quick climate facts</h2>
+      <div class="row g-4">
+        <div class="col-md-4"><div class="fact"><span>🌡️</span><h5>What is a carbon footprint?</h5><p class="text-muted">The total greenhouse gases caused by your activities, usually measured in tonnes of CO₂-equivalent.</p></div></div>
+        <div class="col-md-4"><div class="fact"><span>✈️</span><h5>Flights add up fast</h5><p class="text-muted">A single long-haul return flight can produce more emissions than months of daily commuting.</p></div></div>
+        <div class="col-md-4"><div class="fact"><span>💡</span><h5>Energy is the big lever</h5><p class="text-muted">Efficient appliances, LED bulbs and renewable power cut household emissions significantly.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-4 text-center">
+    <small>© 2026 Greenprint · Demo project · Figures are simplified estimates</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
